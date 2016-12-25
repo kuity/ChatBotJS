@@ -1,6 +1,6 @@
 {
     "appSecret": "3f26f80c9ce67f010355862669999f37",
-    "pageAccessToken": "EAAEZBbIFq1r0BAEtuQdfbAvoqdJ9jcndzMqZApRuJZBcXQleHtCPpYxTDw7nut4JVm4xi2awcqVvWvvciFh9WHWX94q0ZB59Yf6HeYZAOnxZAC8xFU1OIEKfu82D2N2PUBXm6dC6lI6pFw5apV9Q9VnyZBns2gSLTRwWBtLPHQMIprOc1vusBTz",
+    "pageAccessToken": "EAAEZBbIFq1r0BAD4xerlhp8XCe0PAl5bjAnZAQ4KdGkCWAbiAMulOXnMZArm1BWrXJBlGPAfXejZAuVdgik9PpGGbjpnknFTM7yFg0KTMEsBLm82xAP5DRh2tKESxWJ4u58g2WZCPij0WvQR0MmGPJ5Bgo5YbYeJxTNUM40Scy6NFyCUJttRX",
     "validationToken": "my_voice_is_my_password_verify_me",
     "serverURL": "https://shrouded-spire-49435.herokuapp.com"
 }
