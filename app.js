@@ -243,7 +243,7 @@ function receivedMessage(event) {
   } else if (quickReply) {
 	if (messageText == "Iphone 7") {
 		sendGenericMessage(senderID, messageText);
-		//console.log("Quick reply for message %s with payload %s",	messageId, quickReplyPayload);
+		//console.log("Quick reply for message %s with payload %s", messageId, quickReplyPayload);
 		
     	        return;
 	}
@@ -647,7 +647,7 @@ function sendGenericMessage(recipientId, messageText) {
 	            title: "Iphone 7 (32 GB)",
 	            subtitle: "Iphone 7 (32 GB)",
 	            item_url: "https://www.m1.com.sg/personal/mobile/phones/details/iphone%207%2032gb%20black",               
-	            image_url: "https://www.m1.com.sg/-/media/Images/M1Portal/Product/Phones/Gallery%20Images/APPLE_iphone7_Matblk_01_Large.ashx",
+	            image_url: SERVER_URL + "/assets/APPLE_iphone7_Matblk_01_Large.png",
 	            buttons: [{
 	              type: "web_url",
 	              url: "https://www.m1.com.sg/personal/mobile/phones/details/iphone%207%2032gb%20black",
@@ -661,7 +661,7 @@ function sendGenericMessage(recipientId, messageText) {
 	            title: "Iphone 7 (128 GB)",
 	            subtitle: "Iphone 7 (128 GB)",
 	            item_url: "https://www.m1.com.sg/personal/mobile/phones/details/iphone%207%20plus%20128gb%20black",               
-	            image_url: "https://www.m1.com.sg/-/media/Images/M1Portal/Product/Phones/Gallery%20Images/APPLE_iphone7plus_Matblk_01_Large.ashx",
+	            image_url: SERVER_URL + "/assets/APPLE_iphone7_Matblk_01_Large.png",
 	            buttons: [{
 	              type: "web_url",
 	              url: "https://www.m1.com.sg/personal/mobile/phones/details/iphone%207%20plus%20128gb%20black",
