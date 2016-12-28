@@ -519,7 +519,7 @@ function sendFileMessage(recipientId) {
 }
 
 /*
- * Send a text message using the Send API.
+ * Send a text message using the Send API.comm
  *
  */
 function sendTextMessage(recipientId, messageText) {
