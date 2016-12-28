@@ -241,12 +241,20 @@ function receivedMessage(event) {
       messageId, appId, metadata);
     return;
   } else if (quickReply) {
-    var quickReplyPayload = quickReply.payload;
-    console.log("Quick reply for message %s with payload %s",
-      messageId, quickReplyPayload);
-
-    sendTextMessage(senderID, "Quick reply tapped");
-    return;
+	if (messageText == "Iphone 7") {
+		sendGenericMessage(senderID, messageText);
+		//console.log("Quick reply for message %s with payload %s",	messageId, quickReplyPayload);
+		
+    	        return;
+	}
+	else {
+	    var quickReplyPayload = quickReply.payload;
+	    console.log("Quick reply for message %s with payload %s",
+	      messageId, quickReplyPayload);
+	
+	    sendTextMessage(senderID, "Quick reply tapped");
+    	    return;
+	}
   }
 
   if (messageText) {
@@ -619,6 +627,100 @@ function sendGenericMessage(recipientId) {
       }
     }
   };  
+
+  callSendAPI(messageData);
+}
+
+function sendGenericMessage(recipientId, messageText) {
+
+	if (messageText == "Iphone 7") {
+		var messageData = {
+	   	 recipient: {
+	          id: recipientId
+	    },
+	    message: {
+	      attachment: {
+	        type: "template",
+	        payload: {
+	          template_type: "generic",
+	          elements: [{
+	            title: "Iphone 7 (32 GB)",
+	            subtitle: "Iphone 7 (32 GB)",
+	            item_url: "https://www.m1.com.sg/personal/mobile/phones/details/iphone%207%2032gb%20black",               
+	            image_url: "https://www.m1.com.sg/-/media/Images/M1Portal/Product/Phones/Gallery%20Images/APPLE_iphone7_Matblk_01_Large.ashx",
+	            buttons: [{
+	              type: "web_url",
+	              url: "https://www.m1.com.sg/personal/mobile/phones/details/iphone%207%2032gb%20black",
+	              title: "Open Web URL"
+	            }, {
+	              type: "postback",
+	              title: "Call Postback",
+	              payload: "Payload for first bubble",
+	            }],
+	          }, {
+	            title: "Iphone 7 (128 GB)",
+	            subtitle: "Iphone 7 (128 GB)",
+	            item_url: "https://www.m1.com.sg/personal/mobile/phones/details/iphone%207%20plus%20128gb%20black",               
+	            image_url: "https://www.m1.com.sg/-/media/Images/M1Portal/Product/Phones/Gallery%20Images/APPLE_iphone7plus_Matblk_01_Large.ashx",
+	            buttons: [{
+	              type: "web_url",
+	              url: "https://www.m1.com.sg/personal/mobile/phones/details/iphone%207%20plus%20128gb%20black",
+	              title: "Open Web URL"
+	            }, {
+	              type: "postback",
+	              title: "Call Postback",
+	              payload: "Payload for second bubble",
+	            }]
+	          }]
+	        }
+	      }
+	    }
+ 	 };
+	}
+	else {
+	  var messageData = {
+	    recipient: {
+	      id: recipientId
+	    },
+	    message: {
+	      attachment: {
+	        type: "template",
+	        payload: {
+	          template_type: "generic",
+	          elements: [{
+	            title: "rift",
+	            subtitle: "Next-generation virtual reality",
+	            item_url: "https://www.oculus.com/en-us/rift/",               
+	            image_url: SERVER_URL + "/assets/rift.png",
+	            buttons: [{
+	              type: "web_url",
+	              url: "https://www.oculus.com/en-us/rift/",
+	              title: "Open Web URL"
+	            }, {
+	              type: "postback",
+	              title: "Call Postback",
+	              payload: "Payload for first bubble",
+	            }],
+	          }, {
+	            title: "touch",
+	            subtitle: "Your Hands, Now in VR",
+	            item_url: "https://www.oculus.com/en-us/touch/",               
+	            image_url: SERVER_URL + "/assets/touch.png",
+	            buttons: [{
+	              type: "web_url",
+	              url: "https://www.oculus.com/en-us/touch/",
+	              title: "Open Web URL"
+	            }, {
+	              type: "postback",
+	              title: "Call Postback",
+	              payload: "Payload for second bubble",
+	            }]
+	          }]
+	        }
+	      }
+	    }
+ 	 };  
+	}
 
   callSendAPI(messageData);
 }
