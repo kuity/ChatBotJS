@@ -255,7 +255,11 @@ function receivedMessage(event) {
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     switch (messageText) {
-      case 'image':
+      case 'buy':
+        sendQuickReply(senderID,messageText);
+        break;
+
+       case 'image':
         sendImageMessage(senderID);
         break;
 
@@ -715,6 +719,69 @@ function sendQuickReply(recipientId) {
       ]
     }
   };
+
+  callSendAPI(messageData);
+}
+
+function sendQuickReply(recipientId, messageText) {
+
+  if (messageText =="buy") {
+	var messageData = {
+	    recipient: {
+	      id: recipientId
+	    },
+	    message: {
+	      text: "What phone would you like to buy?",
+	      quick_replies: [
+	        {
+	          "content_type":"text",
+	          "title":"Iphone 7",
+	          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
+	        },
+	        {
+	          "content_type":"text",
+	          "title":"Samsung S7 Edge",
+	          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
+	        },
+	        {
+	          "content_type":"text",
+	          "title":"Sony Ericsson XZ",
+	          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+	        }
+	      ]
+	    }
+	  };
+  }
+  else {
+	var messageData = {
+	    recipient: {
+	      id: recipientId
+	    },
+	    message: {
+	      text: "What's your favorite movie genre?",
+	      quick_replies: [
+	        {
+	          "content_type":"text",
+	          "title":"Action",
+	          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
+	        },
+	        {
+	          "content_type":"text",
+	          "title":"Comedy",
+	          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
+	        },
+	        {
+	          "content_type":"text",
+	          "title":"Drama",
+	          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+	        }
+	      ]
+	    }
+ 	 };
+  }
+
+
+  
 
   callSendAPI(messageData);
 }
