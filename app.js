@@ -237,7 +237,7 @@ function receivedMessage(event) {
   var smallbuy = "buy";
   var bigbuy = "Buy";
   var greetings = ["hi", "Hi", "hello", "Hello"];
-  var greetback = "Hi, how may I help you today?"
+  var greetback = "Hi, how may I help you today?";
 
   if (messageText) {
     var toGreet = false;
