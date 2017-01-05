@@ -234,6 +234,19 @@ function receivedMessage(event) {
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
 
+  if (isEcho) {
+    return;
+  } else if (quickReply) {
+      if (messageText == "Iphone 7") {
+        sendGenericMessage(senderID, messageText);
+        return;
+      } else {
+	    var quickReplyPayload = quickReply.payload;
+	    sendTextMessage(senderID, "Quick reply tapped");
+    	    return;
+      }
+  }
+
   var smallbuy = "buy";
   var bigbuy = "Buy";
   var greetings = ["hi", "Hi", "hello", "Hello"];
@@ -324,20 +337,6 @@ function receivedMessage(event) {
     sendTextMessage(senderID, "Message with attachment received");
   }
 
-  if (isEcho) {
-    // Just logging message echoes to console
-    console.log("Received echo for message %s and app %d with metadata %s", messageId, appId, metadata);
-    return;
-  } else if (quickReply) {
-      if (messageText == "Iphone 7") {
-        sendGenericMessage(senderID, messageText);
-        return;
-      }
-  } else {
-	    var quickReplyPayload = quickReply.payload;
-	    sendTextMessage(senderID, "Quick reply tapped");
-    	    return;
-  }
 }
 
 
