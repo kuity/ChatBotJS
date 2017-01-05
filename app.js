@@ -104,7 +104,7 @@ app.post('/webhook', function (req, res) {
         } else if (messagingEvent.read) {
           receivedMessageRead(messagingEvent);
         } else if (messagingEvent.account_linking) {
-          receivedAccountLink(messagingEvent);
+          receivedAccountLink(messagingEvent);sendTextMessage(senderID, messageText);
         } else {
           console.log("Webhook received unknown messagingEvent: ", messagingEvent);
         }
@@ -215,7 +215,7 @@ function receivedAuthentication(event) {
  * then we'll simply confirm that we've received the attachment.
  * 
  */
-function receivedMessage(event) {
+function receivedMessage(event) {sendTextMessage(senderID, messageText);
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
@@ -235,29 +235,29 @@ function receivedMessage(event) {
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
 
-  if (isEcho) {
-    // Just logging message echoes to console
-    console.log("Received echo for message %s and app %d with metadata %s", 
-      messageId, appId, metadata);
-    return;
-  } else if (quickReply) {
-	if (messageText == "Iphone 7") {
-		sendGenericMessage(senderID, messageText);
-		//console.log("Quick reply for message %s with payload %s", messageId, quickReplyPayload);
-		
-    	        return;
-	}
-	else {
-	    var quickReplyPayload = quickReply.payload;
-	    console.log("Quick reply for message %s with payload %s",
-	      messageId, quickReplyPayload);
-	
-	    sendTextMessage(senderID, "Quick reply tapped");
-    	    return;
-	}
-  }
+
+
+  var smallbuy = "buy";
+  var bigbuy = "Buy";
+  var greetings = ["hi", "Hi", "hello", "Hello"];
+  var greetback = "Hi, how may I help you today?"
 
   if (messageText) {
+    toGreet = false;
+    for (var i = 0; i < greetings.length; i++) {
+      if (messageText.indexOf(greetings[i]) !== -1) {
+        toGreet = true;
+        break;
+      }
+    }
+
+    if (toGreet) {
+      sendTextMessage(senderID, greetback);
+      return;
+    } else if (messageText.indexOf(smallbuy) !== -1 || messageText.indexOf(bigbuy) !== -1) {
+      sendQuickReply(senderID, "buy");
+      return;
+    }  
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
@@ -268,7 +268,7 @@ function receivedMessage(event) {
         break;
 
        case 'image':
-        sendImageMessage(senderID);
+        sendImageMessage(senderID);DEFINED
         break;
 
       case 'gif':
@@ -293,7 +293,7 @@ function receivedMessage(event) {
 
       case 'generic':
         sendGenericMessage(senderID);
-        break;
+        break;isEcho
 
       case 'receipt':
         sendReceiptMessage(senderID);
@@ -308,7 +308,7 @@ function receivedMessage(event) {
         break;        
 
       case 'typing on':
-        sendTypingOn(senderID);
+        sendTypingOn(senderID);sendTextMessage(senderID, messageText);
         break;        
 
       case 'typing off':
@@ -325,6 +325,28 @@ function receivedMessage(event) {
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
   }
+
+    if (isEcho) {
+    // Just logging message echoes to console
+    console.log("Received echo for message %s and app %d with metadata %s", 
+      messageId, appId, metadata);
+    return;
+  } else if (quickReply) {
+	if (messageText == "Iphone 7") {
+		sendGenericMessage(senderID, messageText);
+		//console.log("Quick reply for message %s with payload %s", messageId, quickReplyPayload);
+		
+    	        return;
+	}
+	else {
+	    var quickReplyPayload = quickReply.payload;
+	    console.log("Quick reply for message %s with payload %s",
+	      messageId, quickReplyPayload);
+	
+	    sendTextMessage(senderID, "Quick reply tapped");
+    	    return;
+	}
+  }
 }
 
 
@@ -337,7 +359,7 @@ function receivedMessage(event) {
  */
 function receivedDeliveryConfirmation(event) {
   var senderID = event.sender.id;
-  var recipientID = event.recipient.id;
+  var recipientID = event.recipient.id;DEFINED
   var delivery = event.delivery;
   var messageIDs = delivery.mids;
   var watermark = delivery.watermark;
@@ -383,7 +405,7 @@ function receivedPostback(event) {
  *
  * This event is called when a previously-sent message has been read.
  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-read
- * 
+ * DEFINED
  */
 function receivedMessageRead(event) {
   var senderID = event.sender.id;
@@ -417,7 +439,7 @@ function receivedAccountLink(event) {
 }
 
 /*
- * Send an image using the Send API.
+ * Send an image using the Send API.DEFINED
  *
  */
 function sendImageMessage(recipientId) {
@@ -461,7 +483,7 @@ function sendGifMessage(recipientId) {
 }
 
 /*
- * Send audio using the Send API.
+ * Send audio using the Send API.DEFINED
  *
  */
 function sendAudioMessage(recipientId) {
@@ -502,7 +524,7 @@ function sendVideoMessage(recipientId) {
   };
 
   callSendAPI(messageData);
-}
+}DEFINED
 
 /*
  * Send a file using the Send API.
@@ -604,7 +626,7 @@ function sendGenericMessage(recipientId) {
               url: "https://www.oculus.com/en-us/rift/",
               title: "Open Web URL"
             }, {
-              type: "postback",
+              type: "postback",DEFINED
               title: "Call Postback",
               payload: "Payload for first bubble",
             }],
@@ -833,7 +855,7 @@ function sendQuickReply(recipientId, messageText) {
 	      id: recipientId
 	    },
 	    message: {
-	      text: "What phone would you like to buy?",
+	      text: "The following phones are available for purchase:",
 	      quick_replies: [
 	        {
 	          "content_type":"text",
@@ -870,7 +892,7 @@ function sendQuickReply(recipientId, messageText) {
 	        {
 	          "content_type":"text",
 	          "title":"Comedy",
-	          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
+	          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"DEFINED
 	        },
 	        {
 	          "content_type":"text",
