@@ -240,7 +240,7 @@ function receivedMessage(event) {
   var greetback = "Hi, how may I help you today?"
 
   if (messageText) {
-    toGreet = false;
+    var toGreet = false;
     for (var i = 0; i < greetings.length; i++) {
       if (messageText.indexOf(greetings[i]) !== -1) {
         toGreet = true;
