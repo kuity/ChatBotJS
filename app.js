@@ -240,21 +240,21 @@ function receivedMessage(event) {
   var greetback = "Hi, how may I help you today?";
 
   if (messageText) {
-    var toGreet = false;
-    for (var i = 0; i < greetings.length; i++) {
-      if (messageText.indexOf(greetings[i]) !== -1) {
-        toGreet = true;
-        break;
-      }
-    }
+    //var toGreet = false;
+    //for (var i = 0; i < greetings.length; i++) {
+    //  if (messageText.indexOf(greetings[i]) !== -1) {
+    //    toGreet = true;
+    //    break;
+    //  }
+    //}
 
-    if (toGreet) {
-      sendTextMessage(senderID, greetback);
-      return;
-    } else if (messageText.indexOf(smallbuy) !== -1 || messageText.indexOf(bigbuy) !== -1) {
-      sendQuickReply(senderID, "buy");
-      return;
-    }  
+    //if (toGreet) {
+    //  sendTextMessage(senderID, greetback);
+    //  return;
+    //} else if (messageText.indexOf(smallbuy) !== -1 || messageText.indexOf(bigbuy) !== -1) {
+    //  sendQuickReply(senderID, "buy");
+    //  return;
+    //}  
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
@@ -335,9 +335,7 @@ function receivedMessage(event) {
       }
   } else {
 	    var quickReplyPayload = quickReply.payload;
-	    console.log("Quick reply for message %s with payload %s",
-	      messageId, quickReplyPayload);
-	
+	    console.log("Quick reply for message %s with payload %s", messageId, quickReplyPayload);
 	    sendTextMessage(senderID, "Quick reply tapped");
     	    return;
   }
