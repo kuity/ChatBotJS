@@ -319,7 +319,7 @@ function receivedMessage(event) {
         break;        
 
       case 'typing on':
-        sendTypingOn(senderID);sendTextMessage(senderID, messageText);
+        sendTypingOn(senderID);
         break;        
 
       case 'typing off':
@@ -336,7 +336,6 @@ function receivedMessage(event) {
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
   }
-
 }
 
 
@@ -349,7 +348,7 @@ function receivedMessage(event) {
  */
 function receivedDeliveryConfirmation(event) {
   var senderID = event.sender.id;
-  var recipientID = event.recipient.id;DEFINED
+  var recipientID = event.recipient.id;
   var delivery = event.delivery;
   var messageIDs = delivery.mids;
   var watermark = delivery.watermark;
@@ -395,7 +394,6 @@ function receivedPostback(event) {
  *
  * This event is called when a previously-sent message has been read.
  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-read
- * DEFINED
  */
 function receivedMessageRead(event) {
   var senderID = event.sender.id;
@@ -429,8 +427,7 @@ function receivedAccountLink(event) {
 }
 
 /*
- * Send an image using the Send API.DEFINED
- *
+ * Send an image using the Send API.
  */
 function sendImageMessage(recipientId) {
   var messageData = {
@@ -473,7 +470,7 @@ function sendGifMessage(recipientId) {
 }
 
 /*
- * Send audio using the Send API.DEFINED
+ * Send audio using the Send API.
  *
  */
 function sendAudioMessage(recipientId) {
@@ -514,7 +511,7 @@ function sendVideoMessage(recipientId) {
   };
 
   callSendAPI(messageData);
-}DEFINED
+}
 
 /*
  * Send a file using the Send API.
@@ -616,7 +613,7 @@ function sendGenericMessage(recipientId) {
               url: "https://www.oculus.com/en-us/rift/",
               title: "Open Web URL"
             }, {
-              type: "postback",DEFINED
+              type: "postback",
               title: "Call Postback",
               payload: "Payload for first bubble",
             }],
@@ -882,7 +879,7 @@ function sendQuickReply(recipientId, messageText) {
 	        {
 	          "content_type":"text",
 	          "title":"Comedy",
-	          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"DEFINED
+	          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
 	        },
 	        {
 	          "content_type":"text",
