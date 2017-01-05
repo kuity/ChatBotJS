@@ -259,13 +259,14 @@ function receivedMessage(event) {
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
+
     switch (messageText) {
       case 'buy':
         sendQuickReply(senderID,messageText);
         break;
 
        case 'image':
-        sendImageMessage(senderID);DEFINED
+        sendImageMessage(senderID);
         break;
 
       case 'gif':
@@ -290,7 +291,7 @@ function receivedMessage(event) {
 
       case 'generic':
         sendGenericMessage(senderID);
-        break;isEcho
+        break;
 
       case 'receipt':
         sendReceiptMessage(senderID);
@@ -330,12 +331,10 @@ function receivedMessage(event) {
   } else if (quickReply) {
       if (messageText == "Iphone 7") {
         sendGenericMessage(senderID, messageText);
-        //console.log("Quick reply for message %s with payload %s", messageId, quickReplyPayload);	
         return;
       }
   } else {
 	    var quickReplyPayload = quickReply.payload;
-	    console.log("Quick reply for message %s with payload %s", messageId, quickReplyPayload);
 	    sendTextMessage(senderID, "Quick reply tapped");
     	    return;
   }
